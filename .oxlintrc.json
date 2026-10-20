@@ -1,0 +1,92 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  // Built-in plugins. `unicorn` / `oxc` are on by default
+  // react + jsx-a11y cover the UI surface
+  // `import` catches cycles/duplicates
+  // No `jest`/`vitest` plugin: their rules don't recognize imports from `bun:test`
+  "plugins": ["unicorn", "oxc", "react", "jsx-a11y", "import"],
+  // The `correctness` category is oxlint's bug-catching safety net.
+  // Specific rules below layer on top of it.
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": ["node_modules", "dist", "coverage"],
+  "rules": {
+    // 🛡️ Качество и безопасность кода
+    "no-console": [
+      "warn",
+      {
+        "allow": ["assert", "error", "info", "warn"]
+      }
+    ],
+    "no-shadow-restricted-names": "warn",
+    // `null: "ignore"` permits `x != null` / `x == null` — the deliberate idiom for "is this
+    // null OR undefined", which has no `===` equivalent. `===` is still required everywhere else.
+    "eqeqeq": [
+      "error",
+      "always",
+      {
+        "null": "ignore"
+      }
+    ],
+    // 🎨 Современный JavaScript
+    "no-array-for-each": "warn",
+    // 🧹 Чистота кода
+    "no-else-return": "error",
+    "yoda": "error",
+    "prefer-const": "error",
+    "prefer-exponentiation-operator": "error",
+    "prefer-template": "error",
+    "self-closing-comp": "error",
+    "default-param-last": "error",
+    // 📦 Импорты / неиспользуемый код
+    "no-unused-vars": "error",
+    "no-unused-labels": "error",
+    "no-unused-private-class-members": "error",
+    // ⚛️ React / a11y
+    "alt-text": "warn",
+    "html-has-lang": "warn",
+    "iframe-has-title": "warn",
+    // ⭐ high-value correctness / perf / security
+    "import/no-cycle": "error",
+    "import/no-duplicates": "error",
+    "import/no-self-import": "error",
+    "oxc/no-accumulating-spread": "error",
+    "react/no-unstable-nested-components": "error",
+    "jsx-no-target-blank": "error",
+    "react/no-danger": "warn",
+    "unicorn/prefer-node-protocol": "error",
+    // ✨ modernization & readability
+    "unicorn/throw-new-error": "error",
+    "unicorn/error-message": "error",
+    "unicorn/no-useless-undefined": "warn",
+    "unicorn/prefer-string-starts-ends-with": "warn",
+    "unicorn/prefer-array-some": "warn",
+    "unicorn/prefer-date-now": "warn",
+    "unicorn/prefer-logical-operator-over-ternary": "warn",
+    "no-nested-ternary": "warn",
+    "no-unneeded-ternary": "warn",
+    "no-lonely-if": "warn",
+    "no-param-reassign": "warn",
+    "prefer-object-spread": "warn",
+    "require-await": "warn",
+    // ♿ accessibility hardening
+    "jsx-a11y/anchor-is-valid": "warn",
+    "jsx-a11y/anchor-has-content": "warn",
+    "jsx-a11y/aria-props": "warn",
+    "jsx-a11y/role-has-required-aria-props": "warn",
+    "jsx-a11y/no-redundant-roles": "warn",
+    "jsx-a11y/tabindex-no-positive": "warn",
+    // 🏗️ Имена файлов: PascalCase для React-компонентов (BrandList.jsx),
+    // camelCase для остальных модулей (searchSlice.js)
+    "unicorn/filename-case": [
+      "warn",
+      {
+        "cases": {
+          "pascalCase": true,
+          "camelCase": true
+        }
+      }
+    ]
+  }
+}

@@ -1,15 +1,20 @@
-import { useSelector } from 'react-redux';
-import { selectOffers } from '../searchSlice';
-import RequestStatus from './RequestStatus';
+import { useSelector } from 'react-redux'
 
-const formatPrice = (price) => (price === null ? 'нет в наличии' : `${price.toLocaleString('ru-RU')} ₽`);
+import { selectOffers } from '../searchSlice'
+import RequestStatus from './RequestStatus'
+
+const formatPrice = price =>
+  price === null ? 'нет в наличии' : `${price.toLocaleString('ru-RU')} ₽`
 
 // Этап 2: таблица аналогов и предложений
 export default function OffersTable() {
-  const offers = useSelector(selectOffers);
+  const offers = useSelector(selectOffers)
 
   return (
-    <RequestStatus request={offers} emptyText="Предложений не найдено">
+    <RequestStatus
+      request={offers}
+      emptyText="Предложений не найдено"
+    >
       <h2 className="h5">Аналоги и предложения</h2>
       <div className="table-responsive">
         <table className="table table-sm table-hover">
@@ -24,7 +29,7 @@ export default function OffersTable() {
             </tr>
           </thead>
           <tbody>
-            {offers.items.map((offer) => (
+            {offers.items.map(offer => (
               <tr key={offer.id}>
                 <td>{offer.brand}</td>
                 <td>{offer.number}</td>
@@ -38,5 +43,5 @@ export default function OffersTable() {
         </table>
       </div>
     </RequestStatus>
-  );
+  )
 }

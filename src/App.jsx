@@ -1,6 +1,6 @@
-import SearchForm from './components/SearchForm';
-import BrandList from './components/BrandList';
-import OffersTable from './components/OffersTable';
+import BrandList from './components/BrandList'
+import OffersTable from './components/OffersTable'
+import SearchForm from './components/SearchForm'
 
 export default function App() {
   return (
@@ -10,5 +10,5 @@ export default function App() {
       <BrandList />
       <OffersTable />
     </div>
-  );
+  )
 }

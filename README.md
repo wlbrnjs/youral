@@ -1,6 +1,6 @@
 # Подбор автозапчастей
 
-React + Redux Toolkit + Bootstrap. Работает с API "Проценка" (документация - `wsprice.pdf`).
+React + Redux Toolkit + Bootstrap, собирается и тестируется через [Bun](https://bun.sh). Работает с API "Проценка" (документация - `wsprice.pdf`).
 
 1. Вводим артикул - получаем список производителей.
 2. Выбираем производителя - получаем таблицу аналогов и предложений (цена и остаток по каждому складу).
@@ -8,16 +8,15 @@ React + Redux Toolkit + Bootstrap. Работает с API "Проценка" (�
 ## Запуск
 
 ```bash
-npm install
-npm run dev     # http://localhost:5173
-npm test        # тесты
+bun install
+bun dev         # http://localhost:3000
+bun test        # тесты
+bun lint        # линтер (oxlint)
+bun format      # форматирование (oxfmt)
+bun run build   # сборка в dist/
 ```
 
-По умолчанию используется демо-ключ из документации. Свой ключ можно задать в файле `.env`:
-
-```
-VITE_API_KEY=ваш-ключ
-```
+Используется демо-ключ из документации. Свой ключ - константа `API_KEY` в `src/api.js`.
 
 ## Что где лежит
 

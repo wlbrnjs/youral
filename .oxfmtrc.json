@@ -1,0 +1,41 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "useTabs": false,
+  "tabWidth": 2,
+  "printWidth": 100,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "quoteProps": "as-needed",
+  "trailingComma": "es5",
+  "semi": false,
+  "arrowParens": "avoid",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "singleAttributePerLine": true,
+  // 📦 Сортировка импортов
+  // Порядок групп с пустой строкой между ними:
+  //   node builtins → react → прочие пакеты → относительные пути.
+  "sortImports": {
+    "newlinesBetween": true,
+    "customGroups": [
+      {
+        "groupName": "react",
+        "selector": "external",
+        "elementNamePattern": ["react", "react/**"]
+      }
+    ],
+    "groups": ["builtin", "react", "external", "internal", ["parent", "sibling", "index"]]
+  },
+  // 🧹 Сортировка ключей package.json.
+  "sortPackageJson": true,
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "coverage",
+    // Markdown/YAML excluded so oxfmt doesn't reflow docs.
+    // Remove these lines if you want oxfmt to own them too.
+    "**/*.md",
+    "**/*.yml",
+    "**/*.yaml"
+  ]
+}

@@ -1,9 +1,9 @@
 export default function Loader() {
   return (
     <div className="text-center my-4">
-      <div className="spinner-border text-primary" role="status">
+      <output className="spinner-border text-primary">
         <span className="visually-hidden">Загрузка...</span>
-      </div>
+      </output>
     </div>
-  );
+  )
 }
